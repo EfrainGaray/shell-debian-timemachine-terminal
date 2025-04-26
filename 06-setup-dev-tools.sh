@@ -61,16 +61,17 @@ bash -c "
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 "
 
-# Agregar carga automática de NVM en ZSH para xian
-echo "🔗 Configurando carga automática de NVM en ZSH..."
+# Agregar carga automática de NVM en .zshrc para xian
+echo "🔗 Configurando carga automática de NVM en ZSH para ${USER_NAME}..."
 echo '
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-' >> "/home/${USER_NAME}/.zshrc"
+' >> "${USER_HOME}/.zshrc"
 
-# Para root
+# Agregar carga automática de NVM en .zshrc para root
+echo "🔗 Configurando carga automática de NVM en ZSH para root..."
 echo '
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -79,10 +80,10 @@ export NVM_DIR="$HOME/.nvm"
 ' >> "/root/.zshrc"
 
 # Asegurar permisos correctos
-chown "${USER_NAME}:${USER_NAME}" "/home/${USER_NAME}/.zshrc"
+chown "${USER_NAME}:${USER_NAME}" "${USER_HOME}/.zshrc"
 
 # 5. Instalar Node.js 20 usando NVM
-echo "🧩 Instalando Node.js 20 usando NVM..."
+echo "🧩 Instalando Node.js 20.x usando NVM..."
 
 # Para xian
 sudo -u "${USER_NAME}" bash -c '
